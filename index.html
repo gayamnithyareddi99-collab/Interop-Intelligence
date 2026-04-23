@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Interop Intelligence  | AI-Powered Healthcare Interoperability Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   RESET & ROOT   Interop Intelligence  navy/teal/red palette
+============================================================ */
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+
+:root{
+  --teal:#00B4D8;
+  --teal-dim:#0096B4;
+  --teal-dark:#006E88;
+  --navy:#03111F;
+  --navy-mid:#051C2E;
+  --red:#C0392B;
+  --red-dark:#96291F;
+  --white:#FFFFFF;
+  --off-white:#EEF4F8;
+  --text-dark:#03111F;
+  --text-muted:#3A5570;
+  --card-bg:rgba(0,180,216,0.04);
+  --card-border:rgba(0,180,216,0.18);
+}
+
+html{font-family:'Source Sans 3',sans-serif;}
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:#03111F;}
+::-webkit-scrollbar-thumb{background:#00B4D8;border-radius:3px;}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+.navbar{
+  width:100%;background:rgba(3,17,31,0.97);
+  padding:14px 8%;position:fixed;top:0;left:0;
+  z-index:1000;border-bottom:1px solid rgba(0,180,216,0.18);
+  backdrop-filter:blur(12px);
+}
+.nav-container{
+  max-width:1200px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{
+  font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;
+  color:var(--teal);letter-spacing:2px;
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+}
+.logo-icon{
+  width:36px;height:36px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.logo-icon svg{width:22px;height:22px;}
+.logo span{color:var(--white);font-weight:400;}
+
+#navMenu{display:flex;gap:32px;align-items:center;}
+#navMenu a{
+  text-decoration:none;color:rgba(0,180,216,0.8);
+  font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  position:relative;transition:color 0.3s;font-family:'IBM Plex Mono',monospace;
+}
+#navMenu a::after{
+  content:"";position:absolute;left:0;bottom:-4px;
+  width:0;height:1px;background:var(--teal);transition:0.3s;
+}
+#navMenu a:hover{color:var(--teal);}
+#navMenu a:hover::after{width:100%;}
+.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.menu-toggle span{width:24px;height:2px;background:var(--teal);display:block;transition:0.3s;}
+
+@media(max-width:900px){
+  #navMenu{
+    position:absolute;top:64px;left:0;width:100%;
+    background:rgba(3,17,31,0.98);flex-direction:column;padding:28px 0;gap:20px;display:none;
+    border-bottom:1px solid rgba(0,180,216,0.18);
+  }
+  #navMenu.active{display:flex;}
+  .menu-toggle{display:flex;}
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero-section{
+  position:relative;padding:150px 8% 100px;background:var(--navy);
+  overflow:hidden;min-height:100vh;display:flex;align-items:center;
+}
+.hero-section::before{
+  content:"";position:absolute;top:0;right:0;width:280px;height:280px;
+  background:var(--teal);opacity:0.07;clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.hero-section::after{
+  content:"";position:absolute;bottom:0;left:0;width:300px;height:300px;
+  background:var(--red);opacity:0.06;clip-path:polygon(0 100%,0 0,100% 100%);
+}
+.hero-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(0,180,216,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,180,216,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,180,216,0.04) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.hero-container{
+  max-width:1200px;margin:auto;
+  display:grid;grid-template-columns:1.1fr 0.9fr;
+  gap:70px;align-items:center;position:relative;z-index:2;width:100%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.3);
+  color:var(--teal);font-size:11px;font-weight:700;letter-spacing:3px;
+  padding:6px 16px;border-radius:3px;text-transform:uppercase;
+  margin-bottom:20px;font-family:'IBM Plex Mono',monospace;
+}
+.hero-badge::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);
+  animation:pulse-dot 1.5s ease-in-out infinite;
+}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.6);}}
+.hero-left h1{
+  font-family:'Rajdhani',sans-serif;font-size:54px;line-height:1.12;
+  color:var(--teal);margin-bottom:8px;letter-spacing:1px;
+}
+.hero-left h1 span{color:var(--white);}
+.hero-divider{
+  width:70px;height:2px;background:linear-gradient(90deg,var(--teal),transparent);
+  margin:18px 0 24px;
+}
+.hero-text{color:#7AAEC4;font-size:17px;line-height:1.85;margin-bottom:35px;max-width:520px;}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-teal{
+  background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  color:var(--navy);padding:14px 32px;border-radius:4px;
+  text-decoration:none;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;
+  transition:0.3s;box-shadow:0 4px 20px rgba(0,180,216,0.25);font-family:'IBM Plex Mono',monospace;
+}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,180,216,0.4);}
+.btn-outline-teal{
+  border:1px solid var(--teal);color:var(--teal);padding:14px 32px;border-radius:4px;
+  text-decoration:none;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;
+  transition:0.3s;font-family:'IBM Plex Mono',monospace;
+}
+.btn-outline-teal:hover{background:rgba(0,180,216,0.08);}
+.hero-right{position:relative;}
+.hero-card{
+  background:rgba(0,180,216,0.04);border:1px solid rgba(0,180,216,0.18);
+  border-radius:12px;padding:35px;backdrop-filter:blur(8px);position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,var(--teal),var(--red));
+}
+.hero-card-title{
+  font-family:'IBM Plex Mono',monospace;color:var(--teal);
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;
+}
+.hero-stat{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 0;border-bottom:1px solid rgba(0,180,216,0.08);
+}
+.hero-stat:last-child{border-bottom:none;}
+.stat-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+.stat-dot.red{background:var(--red);}
+.stat-label{color:#7AAEC4;font-size:14px;flex:1;}
+.stat-val{color:var(--teal);font-weight:700;font-size:16px;font-family:'Rajdhani',sans-serif;letter-spacing:1px;}
+
+@media(max-width:900px){
+  .hero-section{padding:120px 6% 80px;min-height:auto;}
+  .hero-container{grid-template-columns:1fr;gap:50px;text-align:center;}
+  .hero-left h1{font-size:32px;}
+  .hero-divider{margin:16px auto 22px;}
+  .hero-text{font-size:15px;margin:0 auto 28px;max-width:95%;}
+  .hero-buttons{justify-content:center;}
+  .btn-teal,.btn-outline-teal{padding:13px 24px;font-size:12px;}
+}
+
+/* ============================================================
+   ABOUT
+============================================================ */
+.about-section{padding:130px 8%;background:var(--navy-mid);position:relative;overflow:hidden;}
+.about-section::before{
+  content:"";position:absolute;top:0;right:0;width:250px;height:250px;
+  background:var(--red);opacity:0.05;clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.about-section::after{
+  content:"";position:absolute;bottom:0;left:0;width:250px;height:250px;
+  background:var(--teal);opacity:0.04;clip-path:polygon(0 100%,0 0,100% 100%);
+}
+.about-container{
+  max-width:1100px;margin:auto;display:grid;grid-template-columns:1.3fr 1fr;
+  gap:80px;align-items:center;position:relative;z-index:2;
+}
+.section-label{
+  display:inline-block;color:var(--teal);font-size:11px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;
+}
+.section-title{
+  font-family:'Rajdhani',sans-serif;font-size:40px;color:var(--teal);
+  line-height:1.2;margin-bottom:8px;letter-spacing:1px;
+}
+.section-divider{
+  width:70px;height:2px;background:linear-gradient(90deg,var(--teal),transparent);margin:14px 0 26px;
+}
+.about-left p{color:#7AAEC4;line-height:1.85;margin-bottom:20px;font-size:16px;max-width:520px;}
+.about-features{margin-top:28px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.feature-tag{
+  background:rgba(0,180,216,0.06);border:1px solid rgba(0,180,216,0.18);
+  color:rgba(0,180,216,0.9);padding:10px 16px;border-radius:5px;
+  font-size:12px;font-weight:700;letter-spacing:0.5px;font-family:'IBM Plex Mono',monospace;
+}
+.founder-box{
+  background:rgba(0,180,216,0.04);border:1px solid rgba(0,180,216,0.18);
+  padding:38px;border-radius:12px;position:relative;
+}
+.founder-box::before{
+  content:'"';position:absolute;top:-20px;left:28px;
+  font-size:80px;color:var(--teal);opacity:0.12;font-family:'Rajdhani',sans-serif;line-height:1;
+}
+.founder-box::after{
+  content:"";position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,var(--teal),transparent);border-radius:12px 12px 0 0;
+}
+.founder-box-title{
+  font-family:'Rajdhani',sans-serif;color:var(--teal);
+  font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;
+}
+.founder-box-div{width:50px;height:2px;background:var(--teal);margin-bottom:18px;}
+.founder-box p{color:#7AAEC4;line-height:1.8;margin-bottom:16px;font-size:15px;}
+.founder-box p strong{color:rgba(0,180,216,0.9);}
+.linkedin-btn{
+  display:inline-block;padding:10px 22px;background:var(--teal);color:var(--navy);
+  text-decoration:none;border-radius:4px;font-weight:700;font-size:12px;
+  letter-spacing:1px;text-transform:uppercase;margin-top:4px;transition:0.3s;
+  font-family:'IBM Plex Mono',monospace;
+}
+.linkedin-btn:hover{background:#22CCEE;}
+
+@media(max-width:900px){
+  .about-section{padding:90px 6%;}
+  .about-container{grid-template-columns:1fr;gap:50px;text-align:center;}
+  .section-divider{margin:14px auto 24px;}
+  .about-left p{margin:0 auto 18px;max-width:95%;}
+  .about-features{grid-template-columns:1fr;max-width:300px;margin:20px auto 0;}
+  .feature-tag{text-align:center;}
+  .founder-box{text-align:center;}
+  .founder-box-div{margin:8px auto 18px;}
+}
+
+/* ============================================================
+   PROCESS
+============================================================ */
+.process-section{padding:130px 8%;background:var(--off-white);position:relative;overflow:hidden;}
+.process-section::before{
+  content:"";position:absolute;top:0;right:0;width:250px;height:250px;
+  background:var(--teal);opacity:0.07;clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.process-section::after{
+  content:"";position:absolute;bottom:0;left:0;width:260px;height:260px;
+  background:var(--navy);opacity:0.07;clip-path:polygon(0 100%,0 0,100% 100%);
+}
+.process-container{max-width:1200px;margin:auto;text-align:center;position:relative;z-index:2;}
+.process-container .section-title{color:var(--text-dark);}
+.process-container .section-label{color:var(--red);}
+.process-container .section-divider{margin:14px auto 26px;background:linear-gradient(90deg,var(--teal-dim),transparent);}
+.process-sub{max-width:660px;margin:0 auto 60px;color:#3A5570;line-height:1.8;font-size:16px;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+.process-card{
+  background:var(--white);padding:28px 22px;border-radius:10px;
+  border:1px solid #B8D4DE;border-top:4px solid var(--teal);
+  text-align:left;transition:0.35s;box-shadow:0 4px 20px rgba(0,0,0,0.04);
+}
+.process-card:hover{
+  transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,180,216,0.12);border-top-color:var(--red);
+}
+.process-icon{
+  width:52px;height:52px;background:var(--navy);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:22px;
+}
+.step-badge{
+  display:inline-block;background:var(--teal);color:var(--navy);
+  font-size:11px;font-weight:700;padding:5px 14px;border-radius:3px;
+  letter-spacing:1px;margin-bottom:12px;font-family:'IBM Plex Mono',monospace;
+}
+.process-card h3{
+  font-family:'Rajdhani',sans-serif;margin-bottom:10px;
+  color:var(--text-dark);font-size:18px;letter-spacing:0.5px;
+}
+.process-card p{color:#3A5570;font-size:14px;line-height:1.65;}
+
+@media(max-width:1000px){.process-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){
+  .process-section{padding:80px 6%;}
+  .process-container .section-title{font-size:26px;}
+  .process-sub{font-size:14px;margin-bottom:40px;}
+  .process-grid{grid-template-columns:1fr;}
+}
+
+/* ============================================================
+   PLATFORM
+============================================================ */
+.platform-section{padding:130px 8%;background:var(--navy);position:relative;overflow:hidden;}
+.platform-section::before{
+  content:"";position:absolute;top:0;right:0;width:250px;height:250px;
+  background:var(--teal);opacity:0.06;clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.platform-section::after{
+  content:"";position:absolute;bottom:0;left:0;width:260px;height:260px;
+  background:var(--red);opacity:0.05;clip-path:polygon(0 100%,0 0,100% 100%);
+}
+.platform-container{max-width:1200px;margin:auto;text-align:center;position:relative;z-index:2;}
+.platform-container .section-title{color:var(--teal);}
+.platform-container .section-label{color:var(--red);}
+.platform-container .section-divider{margin:14px auto 26px;background:linear-gradient(90deg,var(--teal),transparent);}
+.platform-sub{max-width:660px;margin:0 auto 60px;color:#7AAEC4;line-height:1.8;font-size:16px;}
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.platform-card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  padding:30px 25px;border-radius:10px;text-align:left;transition:0.35s;position:relative;overflow:hidden;
+}
+.platform-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(90deg,var(--teal),var(--red));
+  transform:scaleX(0);transform-origin:left;transition:0.4s;
+}
+.platform-card:hover{
+  transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  border-color:rgba(0,180,216,0.35);
+}
+.platform-card:hover::before{transform:scaleX(1);}
+.platform-card-icon{
+  width:52px;height:52px;background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.2);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:18px;
+}
+.element-badge{
+  display:inline-block;background:rgba(192,57,43,0.10);border:1px solid rgba(192,57,43,0.28);
+  color:#FF6B6B;font-size:11px;font-weight:700;padding:4px 12px;border-radius:3px;
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;font-family:'IBM Plex Mono',monospace;
+}
+.platform-card h3{
+  font-family:'Rajdhani',sans-serif;color:rgba(0,180,216,0.9);
+  font-size:18px;margin-bottom:10px;letter-spacing:0.5px;
+}
+.platform-card p.short-text{color:#7AAEC4;font-size:13px;margin-bottom:12px;font-style:italic;}
+.platform-card p.more-text{color:#507080;font-size:14px;line-height:1.65;display:none;margin-bottom:14px;}
+.platform-card.open p.more-text{display:block;}
+.platform-card .learn-more-btn{
+  background:none;border:1px solid rgba(0,180,216,0.3);color:var(--teal);
+  padding:7px 16px;border-radius:4px;font-size:12px;font-weight:700;
+  cursor:pointer;font-family:'IBM Plex Mono',monospace;letter-spacing:0.5px;transition:0.3s;
+}
+.platform-card .learn-more-btn:hover{background:rgba(0,180,216,0.08);}
+
+@media(max-width:900px){.platform-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.platform-section{padding:80px 6%;}.platform-container .section-title{font-size:26px;}}
+
+/* ============================================================
+   MARKET STRIP
+============================================================ */
+.market-strip{background:linear-gradient(135deg,var(--teal),var(--teal-dark));padding:50px 8%;}
+.stats-grid{
+  max-width:1100px;margin:auto;display:grid;
+  grid-template-columns:repeat(4,1fr);gap:30px;
+}
+.stat-item{text-align:center;}
+.stat-num{
+  font-family:'Rajdhani',sans-serif;font-size:40px;font-weight:700;
+  color:var(--navy);display:block;margin-bottom:8px;letter-spacing:1px;
+}
+.stat-desc{color:rgba(3,17,31,0.75);font-size:13px;line-height:1.6;}
+
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.stats-grid{grid-template-columns:1fr;}.market-strip{padding:40px 6%;}}
+
+/* ============================================================
+   PRICING
+============================================================ */
+.pricing-section{padding:130px 8%;background:var(--off-white);position:relative;overflow:hidden;}
+.pricing-section::before{
+  content:"";position:absolute;top:0;right:0;width:250px;height:250px;
+  background:var(--teal);opacity:0.06;clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.pricing-section::after{
+  content:"";position:absolute;bottom:0;left:0;width:260px;height:260px;
+  background:var(--navy);opacity:0.06;clip-path:polygon(0 100%,0 0,100% 100%);
+}
+.pricing-container{max-width:1100px;margin:auto;text-align:center;position:relative;z-index:2;}
+.pricing-container .section-title{color:var(--text-dark);}
+.pricing-container .section-label{color:var(--red);}
+.pricing-container .section-divider{margin:14px auto 26px;background:linear-gradient(90deg,var(--teal-dim),transparent);}
+.pricing-sub{max-width:640px;margin:0 auto 60px;color:#3A5570;line-height:1.8;font-size:16px;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start;}
+.price-card{
+  background:var(--white);border-radius:10px;padding:34px 28px;
+  border:1px solid #B8D4DE;transition:0.35s;
+}
+.price-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.1);}
+.price-card.featured{
+  background:var(--navy);border-color:rgba(0,180,216,0.35);
+  transform:scale(1.03);box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+.price-card.featured:hover{transform:scale(1.03) translateY(-6px);}
+.price-tag{
+  display:inline-block;font-family:'IBM Plex Mono',monospace;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--teal-dim);margin-bottom:10px;
+}
+.price-card.featured .price-tag{color:var(--teal);}
+.price-card h3{font-family:'Rajdhani',sans-serif;font-size:24px;margin-bottom:6px;color:var(--text-dark);letter-spacing:0.5px;}
+.price-card.featured h3{color:var(--teal);}
+.price-card > p{color:#507080;font-size:14px;margin-bottom:4px;}
+.price-card.featured > p{color:#7AAEC4;}
+.price-amount{
+  font-family:'Rajdhani',sans-serif;font-size:34px;font-weight:700;
+  color:var(--teal-dim);margin:16px 0 6px;display:block;
+}
+.price-card.featured .price-amount{color:var(--teal);}
+.price-unit{color:#888;font-size:13px;margin-bottom:22px;}
+.price-card.featured .price-unit{color:#7AAEC4;}
+.price-features{list-style:none;margin-bottom:28px;}
+.price-features li{
+  padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.06);
+  color:#3A5570;font-size:14px;display:flex;gap:10px;align-items:flex-start;
+}
+.price-card.featured .price-features li{border-bottom-color:rgba(255,255,255,0.07);color:#7AAEC4;}
+.price-features li:last-child{border-bottom:none;}
+.check{color:var(--teal);font-weight:700;flex-shrink:0;}
+.price-btn{
+  display:block;text-align:center;padding:13px;border-radius:5px;
+  text-decoration:none;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;
+  transition:0.3s;font-family:'IBM Plex Mono',monospace;
+}
+.price-btn-outline{border:1px solid var(--navy);color:var(--navy);}
+.price-btn-outline:hover{background:var(--navy);color:var(--white);}
+.price-btn-teal{background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:var(--navy);}
+.price-btn-teal:hover{filter:brightness(1.1);}
+
+@media(max-width:900px){.pricing-grid{grid-template-columns:1fr;}.price-card.featured{transform:scale(1);}}
+@media(max-width:600px){.pricing-section{padding:80px 6%;}.pricing-container .section-title{font-size:26px;}}
+
+/* ============================================================
+   FAQ
+============================================================ */
+.faq-section{padding:130px 8%;background:var(--navy);position:relative;overflow:hidden;}
+.faq-section::before{
+  content:"";position:absolute;top:0;right:0;width:240px;height:240px;
+  background:var(--teal);opacity:0.06;clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.faq-section::after{
+  content:"";position:absolute;bottom:0;left:0;width:250px;height:250px;
+  background:var(--red);opacity:0.05;clip-path:polygon(0 100%,0 0,100% 100%);
+}
+.faq-container{max-width:800px;margin:auto;position:relative;z-index:2;}
+.faq-header{text-align:center;margin-bottom:50px;}
+.faq-header .section-title{color:var(--teal);}
+.faq-header .section-label{color:var(--red);}
+.faq-header .section-divider{margin:14px auto 20px;}
+.faq-item{border-bottom:1px solid rgba(0,180,216,0.12);padding:20px 0;}
+.faq-question{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:20px;}
+.faq-question h4{
+  font-family:'Rajdhani',sans-serif;color:rgba(0,180,216,0.9);
+  font-size:17px;font-weight:600;letter-spacing:0.3px;
+}
+.faq-icon{color:var(--teal);font-size:20px;font-weight:300;flex-shrink:0;transition:0.3s;font-family:'IBM Plex Mono',monospace;}
+.faq-answer{display:none;color:#507080;font-size:15px;line-height:1.75;padding-top:14px;}
+.faq-item.open .faq-answer{display:block;}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--red);}
+
+@media(max-width:600px){.faq-section{padding:80px 6%;}.faq-question h4{font-size:15px;}}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+.contact-section{padding:130px 8%;background:var(--navy-mid);position:relative;overflow:hidden;}
+.contact-section::before{
+  content:"";position:absolute;top:0;right:0;width:240px;height:240px;
+  background:var(--teal);opacity:0.06;clip-path:polygon(100% 0,0 0,100% 100%);
+}
+.contact-section::after{
+  content:"";position:absolute;bottom:0;left:0;width:250px;height:250px;
+  background:var(--red);opacity:0.06;clip-path:polygon(0 100%,0 0,100% 100%);
+}
+.contact-container{
+  max-width:1050px;margin:auto;display:grid;grid-template-columns:1fr 1fr;
+  gap:70px;align-items:start;position:relative;z-index:2;
+}
+.contact-left .section-title{color:var(--teal);}
+.contact-left .section-label{color:var(--red);}
+.contact-left .section-divider{background:linear-gradient(90deg,var(--teal),transparent);}
+.contact-left p{color:#7AAEC4;line-height:1.8;font-size:16px;margin-bottom:30px;}
+.contact-info-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.contact-icon{
+  width:38px;height:38px;background:rgba(0,180,216,0.08);border:1px solid rgba(0,180,216,0.18);
+  border-radius:5px;display:flex;align-items:center;justify-content:center;
+  color:var(--teal);font-size:16px;flex-shrink:0;
+}
+.contact-info-text strong{color:rgba(0,180,216,0.9);font-size:13px;display:block;margin-bottom:3px;}
+.contact-info-text span{color:#507080;font-size:14px;}
+.contact-form{display:flex;flex-direction:column;gap:16px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{color:var(--teal);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;}
+.form-group input,.form-group select,.form-group textarea{
+  background:rgba(0,180,216,0.04);border:1px solid rgba(0,180,216,0.18);
+  color:var(--white);padding:12px 16px;border-radius:5px;font-size:14px;
+  font-family:'Source Sans 3',sans-serif;outline:none;transition:0.3s;
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#507080;}
+.form-group select option{background:#051C2E;color:var(--white);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--teal);background:rgba(0,180,216,0.07);
+}
+.form-group textarea{min-height:120px;resize:vertical;}
+.form-submit{
+  background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  color:var(--navy);border:none;padding:14px 28px;border-radius:5px;
+  font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:0.3s;font-family:'IBM Plex Mono',monospace;
+}
+.form-submit:hover{filter:brightness(1.15);transform:translateY(-2px);}
+
+@media(max-width:900px){.contact-section{padding:90px 6%;}.contact-container{grid-template-columns:1fr;gap:50px;}}
+@media(max-width:600px){.contact-section{padding:80px 6%;}.contact-left .section-title{font-size:26px;}}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer{background:#010810;padding:70px 8% 30px;border-top:1px solid rgba(0,180,216,0.12);}
+.footer-grid{
+  max-width:1100px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:50px;margin-bottom:50px;
+}
+.footer-brand .logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.footer-brand .logo-icon-sm{
+  width:32px;height:32px;background:linear-gradient(135deg,var(--teal),var(--teal-dark));
+  border-radius:7px;display:flex;align-items:center;justify-content:center;
+}
+.footer-brand .logo-icon-sm svg{width:18px;height:18px;}
+.footer-brand .logo-text{
+  font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;
+  color:var(--teal);letter-spacing:2px;
+}
+.footer-brand .logo-text span{color:var(--white);font-weight:400;}
+.footer-brand p{color:#3A5570;font-size:14px;line-height:1.8;max-width:340px;}
+.footer-col h4{
+  font-family:'Rajdhani',sans-serif;color:var(--teal);
+  font-size:14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;
+}
+.footer-col a{display:block;color:#3A5570;font-size:14px;text-decoration:none;margin-bottom:10px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--teal);}
+.footer-bottom{
+  max-width:1100px;margin:auto;padding-top:28px;
+  border-top:1px solid rgba(0,180,216,0.08);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{color:#243848;font-size:13px;}
+.footer-bottom p span{color:var(--teal);}
+
+@media(max-width:900px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:35px;}
+  .footer-brand{grid-column:span 2;}
+}
+@media(max-width:600px){
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-brand{grid-column:auto;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar">
+  <div class="nav-container">
+
+    <a href="#home" class="logo">
+      Interop<span> Intelligence</span>
+    </a>
+
+    <div id="navMenu">
+      <a href="#about">About</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#platform">Technology</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </div>
+
+  </div>
+</nav>
+<!-- ===================== HERO ===================== -->
+<section class="hero-section" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-container">
+    <div class="hero-left">
+      <div class="hero-badge">TRL 7 Validated · UK Healthcare Innovation</div>
+      <h1>The UK's First <span>AI-Powered</span><br>Interoperability <span>Intelligence</span><br>Layer</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-text">
+         Interop Intelligence  bridges the "Legacy Debt" gap  governing the transition from legacy HL7 v2 data standards to modern FHIR R4 ecosystems with Explainable AI, Readiness Gates, and a Dependency-Aware Governance Graph built specifically for the NHS.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-teal">Request a Demo →</a>
+        <a href="#platform" class="btn-outline-teal">Explore Technology</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-title">// TRL 7 Performance Metrics</div>
+        <div class="hero-stat">
+          <div class="stat-dot"></div>
+          <span class="stat-label">Mapping Accuracy (LIMS → FHIR)</span>
+          <span class="stat-val">99.2%</span>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-dot"></div>
+          <span class="stat-label">Transformation Latency</span>
+          <span class="stat-val">&lt;100ms</span>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-dot"></div>
+          <span class="stat-label">Terminology Mismatch Detection</span>
+          <span class="stat-val">100%</span>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-dot"></div>
+          <span class="stat-label">Manual Validation Time Saved</span>
+          <span class="stat-val">65%</span>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-dot red"></div>
+          <span class="stat-label">UK TAM  Annual NHS Opportunity</span>
+          <span class="stat-val" style="color:var(--red)">£71.5M</span>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-dot red"></div>
+          <span class="stat-label">Integration Failure Rate Reduction</span>
+          <span class="stat-val" style="color:var(--red)">40%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <div class="about-left">
+      <div class="section-label">About Interop Intelligence </div>
+      <h2 class="section-title">Ending the Legacy<br>Debt Crisis in the NHS</h2>
+      <div class="section-divider"></div>
+      <p>
+        Interop Intelligence  introduces a pioneering "Interoperability Intelligence Layer" designed to govern and accelerate the transition of healthcare data from legacy standards (HL7 v2) to modern, API-led FHIR ecosystems. By combining proprietary Explainable AI (XAI), automated readiness assessment, and graph-based dependency modelling, the platform bridges the gap that currently hinders the UK healthcare sector's digital transformation.
+      </p>
+      <p>
+        Unlike traditional integration engines that act as passive "black-box" pipes, Interop Intelligence  functions as an <strong style="color:rgba(0,180,216,0.9)">intelligent governance system</strong>  interpreting legacy data streams, validating them against UK Core profiles in real-time, and generating human-readable "Reasoning Chains" to explain every transformation.
+      </p>
+      <p>
+        Fully aligned with NHS Digital, DTAC, DCB0129, and the 2026 FHIR R4 mandate  transforming integration from a high-risk engineering project into a governed, automated, and trusted utility for a truly connected NHS.
+      </p>
+      <div class="about-features">
+        <div class="feature-tag">NHS DTAC Compliant</div>
+        <div class="feature-tag">DCB0129 Aligned</div>
+        <div class="feature-tag">FHIR R4 / UK Core Native</div>
+        <div class="feature-tag">Edge-Based Sovereignty</div>
+        <div class="feature-tag">99.48% Gross Margin</div>
+        <div class="feature-tag">XAI Reasoning Chains</div>
+      </div>
+    </div>
+    <div class="founder-box">
+      <div class="founder-box-title">Founder &amp; CEO</div>
+      <div class="founder-box-div"></div>
+      <p>
+        <strong>Babita Kumari</strong> brings over 14 years of direct experience as a Principal Integration Engineer and Lead Interface Architect within the NHS and private healthcare sectors.
+      </p>
+      <p>
+        Holding an <strong>MSc in Data Science (Kingston University)</strong> and deep expertise in HL7 V2.x, FHIR R4, and major integration engines  Mirth, Rhapsody, and Cerner  she drives the vision to solve the "Legacy Debt" crisis through ethical, explainable, and inclusive AI.
+      </p>
+      <p>
+        Her front-line experience across NHS hospital IT directly informs the platform's <strong>Explainable Semantic Transformation Engine</strong>  achieving 99.2%+ accuracy in LIMS-to-FHIR stress tests.
+      </p>
+      <a href="#contact" class="linkedin-btn">Contact the Founder →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="process-section" id="how-it-works">
+  <div class="process-container">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">The Governance Intelligence Pipeline</h2>
+    <div class="section-divider"></div>
+
+    <p class="process-sub">
+      Every legacy data stream passes through Interop Intelligence 's four-stage governance pipeline  converting fragmented hospital data into real-time FHIR-ready resources with full explainability, readiness gating, and automated compliance evidence.
+    </p>
+
+    <div class="process-grid">
+
+      <!-- STEP 01 -->
+      <div class="process-card">
+        <div class="process-card-img">
+          <img src="int11.png" alt="data analysis" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="step-badge">STEP 01</div>
+        <h3>Readiness Assessment</h3>
+        <p>The "Readiness Gate" engine scores the maturity of every incoming legacy dataset  validating interface inventories, data quality, and SNOMED CT/LOINC terminology alignment against UK Core profiles before transformation begins. Only compliant data passes through.</p>
+      </div>
+
+      <!-- STEP 02 -->
+      <div class="process-card">
+        <div class="process-card-img">
+          <img src="int22.png" alt="data processing" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="step-badge">STEP 02</div>
+        <h3>Explainable Semantic Mapping</h3>
+        <p>Proprietary XAI logic translates legacy HL7 v2 messages into FHIR R4 resources. For every individual data element converted, a human-readable "Reasoning Chain" is generated  providing a traceable audit trail that Clinical Safety Officers can verify instantly.</p>
+      </div>
+
+      <!-- STEP 03 -->
+      <div class="process-card">
+        <div class="process-card-img">
+          <img src="int3.png" alt="network graph" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="step-badge">STEP 03</div>
+        <h3>Governance Graph Analysis</h3>
+        <p>All integration components  messages, mappings, and endpoints  are modelled as a dependency-aware governance graph. This enables Predictive Impact Analysis: CIOs can see exactly which FHIR resources will be affected by a change before deployment.</p>
+      </div>
+
+      <!-- STEP 04 -->
+      <div class="process-card">
+        <div class="process-card-img">
+          <img src="int4.png" alt="audit compliance" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="step-badge">STEP 04</div>
+        <h3>Automated Audit Evidence</h3>
+        <p>Continuous, machine-readable "Audit Artefacts" are generated during runtime  including validation outcomes, mapping change histories, and safety approval states. Pre-formatted for NHS DTAC and ISO 27001, reducing the compliance burden by up to 70%.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PLATFORM ===================== -->
+<section class="platform-section" id="platform">
+  <div class="platform-container">
+    <div class="section-label">Core Technology</div>
+    <h2 class="section-title">Six Proprietary Innovation Layers</h2>
+    <div class="section-divider"></div>
+
+    <p class="platform-sub">
+      Each module is purpose-built for the UK's clinical regulatory landscape  combining explainability, readiness control, adaptive learning, and edge sovereignty into a single, unified intelligence platform.
+    </p>
+
+    <div class="platform-grid">
+
+      <!-- Card 1 -->
+      <div class="platform-card" id="card1">
+        <div class="platform-card-img">
+          <img src="int5.png" alt="AI analysis" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="element-badge">XAI CORE</div>
+        <h3>X-Interop Engine</h3>
+        <p class="short-text">Explainable Semantic Transformation that makes every mapping transparent.</p>
+        <p class="more-text">
+The X-Interop Engine replaces traditional "black-box" integration with fully explainable semantic transformation. Every HL7 v2 to FHIR R4 conversion is accompanied by a human-readable "Reasoning Chain" that documents intent, mapping logic, terminology alignment (SNOMED CT / LOINC), and validation outcomes.
+
+This ensures Clinical Safety Officers can instantly verify transformations against DCB0129 safety requirements  eliminating the need for manual documentation. The engine has demonstrated 99%+ mapping accuracy in high-volume LIMS conversions with sub-100ms latency, enabling safe, real-time interoperability across NHS systems.
+</p>
+        <button class="learn-more-btn" onclick="toggleCard('card1',this)">Learn More</button>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="platform-card" id="card2">
+        <div class="platform-card-img">
+          <img src="int6.png" alt="validation check" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="element-badge">READINESS</div>
+        <h3>Readiness Gate Engine</h3>
+        <p class="short-text">Prevents "data poisoning" by scoring legacy maturity before transformation.</p>
+<p class="more-text">
+The Readiness Gate Engine acts as a real-time "data quality firewall"  preventing incomplete, inconsistent, or non-compliant legacy datasets from entering modern FHIR ecosystems.
+
+It evaluates interface inventories, schema completeness, terminology alignment, and UK Core conformance before allowing transformation. This proactive gating mechanism reduces integration project failure rates by up to 40% and ensures only clinically safe, high-fidelity data progresses into downstream systems.
+
+Unlike traditional pipelines, this engine shifts validation from post-processing to pre-ingestion  eliminating downstream risk.
+</p>
+        <button class="learn-more-btn" onclick="toggleCard('card2',this)">Learn More</button>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="platform-card" id="card3">
+        <div class="platform-card-img">
+          <img src="int7.png" alt="network graph" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="element-badge">GOVERNANCE</div>
+        <h3>Transformation Governance Graph</h3>
+        <p class="short-text">Dependency-aware graph model for predictive impact analysis.</p>
+<p class="more-text">
+The Transformation Governance Graph models the entire interoperability ecosystem as a dependency-aware network  linking messages, mappings, endpoints, and FHIR resources into a single, queryable structure.
+
+This enables Predictive Impact Analysis: when a change occurs in a legacy system (e.g., LIMS or PAS), the platform instantly identifies all affected downstream resources and APIs before deployment.
+
+For CIOs and integration leads, this transforms interoperability from fragile "pipes" into a resilient, governed infrastructure  reducing system-wide failures and ensuring safe, controlled change management across complex NHS estates.
+</p>
+        <button class="learn-more-btn" onclick="toggleCard('card3',this)">Learn More</button>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="platform-card" id="card4">
+        <div class="platform-card-img">
+          <img src="int8.png" alt="AI brain" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="element-badge">ADAPTIVE AI</div>
+        <h3>Conformance Learning Engine</h3>
+        <p class="short-text">Self-healing AI that learns from engineer corrections.</p>
+<p class="more-text">
+The Adaptive Conformance Learning Engine continuously improves mapping accuracy through a secure human-in-the-loop feedback loop. When engineers correct mappings  especially in non-standard HL7 "Z-segments"  the system learns and updates its internal transformation logic.
+
+Over time, this creates a proprietary "data intelligence layer" that reduces reliance on specialist integration engineers and increases automation accuracy across new deployments.
+
+This capability transforms interoperability from static configuration into a self-evolving system  aligned with real-world clinical data complexity.
+</p>
+        <button class="learn-more-btn" onclick="toggleCard('card4',this)">Learn More</button>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="platform-card" id="card5">
+        <div class="platform-card-img">
+          <img src="int9.png" alt="security compliance" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="element-badge">COMPLIANCE</div>
+        <h3>DTAC Audit Engine</h3>
+        <p class="short-text">Continuous machine-readable evidence generation.</p>
+<p class="more-text">
+The DTAC Audit Engine automatically generates continuous, machine-readable audit artefacts during runtime  including validation logs, mapping histories, safety approvals, and transformation traceability.
+
+These artefacts are pre-formatted for NHS DTAC, ISO 27001, and DCB0129 compliance, enabling organizations to remain in a constant "audit-ready" state without manual documentation overhead.
+
+This reduces compliance workload by up to 70% and transforms regulatory reporting from a retrospective burden into a real-time, automated process.
+</p>
+        <button class="learn-more-btn" onclick="toggleCard('card5',this)">Learn More</button>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="platform-card" id="card6">
+        <div class="platform-card-img">
+          <img src="int10.png" alt="edge computing" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div class="element-badge">EDGE AI</div>
+        <h3>Edge Sovereignty Node</h3>
+        <p class="short-text">Local hospital firewall processing for secure data residency.</p>
+<p class="more-text">
+The Edge Sovereignty Node enables secure, on-premise data processing within hospital infrastructure  ensuring that patient-identifiable data never leaves the local firewall.
+
+All transformations, validations, and reasoning chains are executed locally with sub-100ms latency, while only anonymized metadata is used for system optimization.
+
+This architecture guarantees full UK GDPR compliance, supports NHS data sovereignty requirements, and ensures resilience even during cloud connectivity disruptions  making it suitable for high-security environments such as Acute Trusts and pathology networks.
+</p>
+        <button class="learn-more-btn" onclick="toggleCard('card6',this)">Learn More</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ===================== PRICING ===================== -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-container">
+    <div class="section-label">Licensing &amp; Pricing</div>
+    <h2 class="section-title">Governed Interoperability.<br>Fraction of the Cost.</h2>
+    <div class="section-divider"></div>
+    <p class="pricing-sub">
+      An Interop Intelligence  Professional subscription represents a fraction of the cost of a failed NHS integration project  delivering continuous governance, compliance automation, and clinical safety year-round.
+    </p>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tag">Essential Tier</div>
+        <h3>Readiness Only</h3>
+        <p>For small private clinics or specialized laboratories starting their FHIR transition journey.</p>
+        <span class="price-amount">£499</span>
+        <div class="price-unit">per month · billed annually</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Readiness Gate access &amp; maturity scoring</li>
+          <li><span class="check">✓</span> Interface inventory auditing</li>
+          <li><span class="check">✓</span> Basic data-quality dashboards</li>
+          <li><span class="check">✓</span> GDPR &amp; UK DTAC compliance reports</li>
+          <li><span class="check">✓</span> Edge Node local processing</li>
+          <li><span class="check">✓</span> Email support</li>
+        </ul>
+        <a href="#contact" class="price-btn price-btn-outline">Get Started →</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tag">Professional Tier</div>
+        <h3>Explainable Mapping</h3>
+        <p>For medium-sized hospital groups, regional diagnostic centres, and NHS Trust departments.</p>
+        <span class="price-amount">£1,450</span>
+        <div class="price-unit">per month · billed annually</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Everything in Essential, plus:</li>
+          <li><span class="check">✓</span> Reasoning Chain module (XAI)</li>
+          <li><span class="check">✓</span> Automated HL7-to-FHIR transformation</li>
+          <li><span class="check">✓</span> DTAC-ready audit logs</li>
+          <li><span class="check">✓</span> DCB0129 clinical safety alignment</li>
+          <li><span class="check">✓</span> Adaptive learning pipeline</li>
+          <li><span class="check">✓</span> Priority compliance support</li>
+        </ul>
+        <a href="#contact" class="price-btn price-btn-teal">Request Pilot →</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tag">Enterprise Governance Tier</div>
+        <h3>NHS Trust / ICB</h3>
+        <p>For large Acute Trusts and Integrated Care Boards managing complex regional data ecosystems.</p>
+        <span class="price-amount">Custom</span>
+        <div class="price-unit">avg £3,500+/month · bespoke SLA</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Everything in Professional, plus:</li>
+          <li><span class="check">✓</span> Full Governance Graph deployment</li>
+          <li><span class="check">✓</span> Predictive impact analysis</li>
+          <li><span class="check">✓</span> Unlimited transformation streams</li>
+          <li><span class="check">✓</span> NHS G-Cloud 14 / HSSF ready</li>
+          <li><span class="check">✓</span> 24/7 priority integration support</li>
+        </ul>
+        <a href="#contact" class="price-btn price-btn-outline">Enquire Now →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="faq-section" id="faq">
+  <div class="faq-container">
+    <div class="faq-header">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Common Questions</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>What is the "Legacy Debt Crisis" that Interop Intelligence  solves?</h4>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        The Legacy Debt Crisis refers to the deepening chasm between entrenched legacy data infrastructures and the government-mandated transition to modern FHIR standards. More than 80% of frontline clinical data remains trapped in legacy HL7 v2 formats, file-based silos, and proprietary database structures. This creates severe operational bottlenecks, endangers patient safety through information gaps, and imposes a multi-billion pound "maintenance tax" on an already strained healthcare system. With 215 NHS Trusts and 42 Integrated Care Systems facing a mandatory 2026 deadline to adopt modern interoperability standards, every NHS Trust is effectively a "forced buyer" of interoperability governance. Interop Intelligence  closes this gap by acting as an intelligent governance system rather than a passive data pipe.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>How do "Reasoning Chains" improve clinical safety over traditional integration engines?</h4>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Traditional integration engines treat data transformation as an opaque "black-box" process  data enters one end and exits the other without any visibility into how semantic mappings were handled. This makes it nearly impossible for Clinical Safety Officers (CSOs) to verify the integrity of transformed data, leading to "clinical trust deficits." Interop Intelligence 's Reasoning Chains generate a human-readable explanation for every individual data element converted  covering the "why" behind each mapping decision. CSOs can audit and sign off on automated logic instantly, satisfying DCB0129/DCB0160 compliance requirements. This is the only platform in the UK market that provides this level of transparency for AI-driven clinical data transformation.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>Does Interop Intelligence  require replacing existing integration engines like Mirth or Rhapsody?</h4>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        No. Interop Intelligence  is specifically designed as a "Governance Wrapper" that sits on top of existing integration engines  including Mirth Connect, Rhapsody, and InterSystems HealthShare  without requiring any "rip and replace" of existing infrastructure. The modular "Intelligence Layer" plugs into existing engines via standard APIs, allowing providers to upgrade their governance without hardware replacement. For institutions requiring edge processing, a compact secure Integration Node is available for local processing within the hospital firewall. The platform deploys primarily via secure cloud SaaS with Microsoft Azure UK South/UK West data residency.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>How does the platform comply with NHS DTAC 2.0, DCB0129, and UK GDPR?</h4>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Interop Intelligence  is engineered to be "Compliant by Design," specifically addressing all five NHS DTAC domains. For Clinical Safety (DCB0129), the platform's unique Reasoning Chains act as a real-time clinical safety log. For Data Protection, pre-configured DPIAs tailored for FHIR-based data streaming are included. All identifiable patient data (PII) remains within the provider's secure local network via Edge Node processing  only anonymized metadata is transmitted for system optimisation, ensuring 100% UK data sovereignty. Security architecture is aligned with ISO/IEC 27001 and NCSC Cyber Essentials Plus standards. The platform is registered with the ICO as a data processor, with strict adherence to the "Data Protection by Design and Default" principle.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h4>What is the current development status and what validation has been completed?</h4>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        Interop Intelligence  is at TRL 7  System Prototype Demonstration in Operational Environment. The functional prototype has undergone rigorous testing in simulated high-volume clinical environments. Validated results include 99.2% mapping accuracy with zero data-loss across 100,000 test messages, sub-100ms processing latency for real-time ADT patient feeds, 100% flagging of terminology mismatches during the Readiness Gate phase, and maintenance of operational integrity in Edge Mode during cloud-connectivity disruption. Reasoning Chains are currently under independent Clinical Trial Technician review for DCB0129 transparency compliance. Both cloud-native and on-premise Edge versions are stable and ready for full-scale pilot deployment. Patent documentation is in progress for the proprietary Reasoning Chain logic and Readiness Gate methodology.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+
+    <div class="contact-left">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Request a Pilot or<br>Partnership Discussion</h2>
+      <div class="section-divider"></div>
+      <p>
+        Whether you are an NHS Trust, Integrated Care Board, private hospital group, diagnostic laboratory, MedTech startup, or technology integration partner  we would like to hear from you. Contact us to arrange a demonstration, discuss Lighthouse pilot opportunities, or explore licensing and partnership options.
+      </p>
+      <div class="contact-info-item">
+        <div class="contact-icon">✉</div>
+        <div class="contact-info-text">
+          <strong>Email</strong>
+          <span>interopintelligenceuk@outlook.com</span>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">☎</div>
+        <div class="contact-info-text">
+          <strong>Phone</strong>
+          <span>+44 7442325376 </span>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">⚑</div>
+        <div class="contact-info-text">
+          <strong>Location</strong>
+          <span>United Kingdom</span>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">◈</div>
+        <div class="contact-info-text">
+          <strong>Target Sectors</strong>
+          <span>NHS Trusts · ICBs · Private Hospitals · Diagnostic Labs · MedTech &amp; HealthTech Partners</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" method="POST" action="https://api.web3forms.com/submit">
+      <input type="hidden" name="access_key" value="c6e95f71-4553-4f2e-bb3a-0687aa30166a">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>Organisation</label>
+        <input type="text" name="organisation" placeholder="NHS Trust, clinic, or institution name">
+      </div>
+
+      <div class="form-group">
+        <label>I am a…</label>
+        <select name="role">
+          <option value="">Select your role</option>
+          <option>Chief Clinical Information Officer (CCIO)</option>
+          <option>NHS Trust / ICB CIO or IT Lead</option>
+          <option>NHS Trust / ICB Procurement Lead</option>
+          <option>Clinical Safety Officer (CSO)</option>
+          <option>Integration / Interoperability Engineer</option>
+          <option>Private Hospital / Diagnostic Lab Group</option>
+          <option>MedTech / Digital Health Startup CTO</option>
+          <option>HealthTech / EHR Vendor</option>
+          <option>Academic / Research Organisation</option>
+          <option>Investor / Funder</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Message</label>
+        <textarea name="message" placeholder="Tell us about your interest or integration challenge..." required></textarea>
+      </div>
+
+      <button class="form-submit" type="submit">
+        Send Enquiry →
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <span class="logo-text">Interop<span> Intelligence</span></span>
+      </div>
+      <p>
+        The UK's first AI-powered "Interoperability Intelligence Layer" governing the transition from legacy HL7 v2 to modern FHIR R4 ecosystems with Explainable AI, Readiness Gates, and a Dependency-Aware Governance Graph built for the NHS.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#platform">Technology</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact">Request Pilot</a>
+      <a href="#contact">Partnerships</a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 <span> Interop Intelligence  Ltd</span>. All rights reserved. UK HealthTech Innovation.</p>
+    <p>Innovator Founder Business Plan <span>Babita Kumari</span>, Founder &amp; CEO</p>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script>
+
+/* NAVBAR TOGGLE */
+const toggle = document.getElementById("menuToggle");
+const menu = document.getElementById("navMenu");
+toggle.addEventListener("click",()=>menu.classList.toggle("active"));
+document.querySelectorAll("#navMenu a").forEach(link=>{
+  link.addEventListener("click",()=>menu.classList.remove("active"));
+});
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener("click",function(e){
+    e.preventDefault();
+    const target=document.querySelector(this.getAttribute("href"));
+    if(target)target.scrollIntoView({behavior:"smooth"});
+  });
+});
+
+/* FAQ TOGGLE */
+function toggleFaq(el){
+  const item=el.parentElement;
+  const wasOpen=item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(i=>i.classList.remove("open"));
+  if(!wasOpen)item.classList.add("open");
+}
+
+/* PLATFORM CARD TOGGLE */
+function toggleCard(id,btn){
+  const card=document.getElementById(id);
+  const isOpen=card.classList.contains("open");
+  card.classList.toggle("open");
+  btn.textContent=isOpen?"Learn More":"Show Less";
+}
+
+</script>
+</body>
+</html>
