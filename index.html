@@ -199,9 +199,20 @@ html{font-family:'Source Sans 3',sans-serif;}
   background:var(--teal);opacity:0.04;clip-path:polygon(0 100%,0 0,100% 100%);
 }
 .about-container{
-  max-width:1100px;margin:auto;display:grid;grid-template-columns:1.3fr 1fr;
-  gap:80px;align-items:center;position:relative;z-index:2;
+  max-width:1100px;margin:auto;display:flex;flex-direction:column;
+  gap:60px;position:relative;z-index:2;
 }
+.about-left p{color:#7AAEC4;line-height:1.85;margin-bottom:20px;font-size:16px;}
+.founders-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:28px;
+}
+.founder-role-badge{
+  display:inline-block;
+  background:rgba(192,57,43,0.10);border:1px solid rgba(192,57,43,0.28);
+  color:#FF6B6B;font-size:10px;font-weight:700;padding:4px 12px;border-radius:3px;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;
+}
+@media(max-width:900px){.founders-grid{grid-template-columns:1fr;}}
 .section-label{
   display:inline-block;color:var(--teal);font-size:11px;font-weight:700;
   letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;
@@ -249,9 +260,7 @@ html{font-family:'Source Sans 3',sans-serif;}
 
 @media(max-width:900px){
   .about-section{padding:90px 6%;}
-  .about-container{grid-template-columns:1fr;gap:50px;text-align:center;}
   .section-divider{margin:14px auto 24px;}
-  .about-left p{margin:0 auto 18px;max-width:95%;}
   .about-features{grid-template-columns:1fr;max-width:300px;margin:20px auto 0;}
   .feature-tag{text-align:center;}
   .founder-box{text-align:center;}
@@ -684,19 +693,44 @@ html{font-family:'Source Sans 3',sans-serif;}
         <div class="feature-tag">XAI Reasoning Chains</div>
       </div>
     </div>
-    <div class="founder-box">
-      <div class="founder-box-title">Founder &amp; CEO</div>
-      <div class="founder-box-div"></div>
-      <p>
-        <strong>Babita Kumari</strong> brings over 14 years of direct experience as a Principal Integration Engineer and Lead Interface Architect within the NHS and private healthcare sectors.
-      </p>
-      <p>
-        Holding an <strong>MSc in Data Science (Kingston University)</strong> and deep expertise in HL7 V2.x, FHIR R4, and major integration engines  Mirth, Rhapsody, and Cerner  she drives the vision to solve the "Legacy Debt" crisis through ethical, explainable, and inclusive AI.
-      </p>
-      <p>
-        Her front-line experience across NHS hospital IT directly informs the platform's <strong>Explainable Semantic Transformation Engine</strong>  achieving 99.2%+ accuracy in LIMS-to-FHIR stress tests.
-      </p>
-      <a href="#contact" class="linkedin-btn">Contact the Founder →</a>
+
+    <!-- ── FOUNDING TEAM ── -->
+    <div class="founders-grid">
+
+      <!-- Babita -->
+      <div class="founder-box">
+        <div class="founder-role-badge">Founder &amp; CEO</div>
+        <div class="founder-box-title">Babita Kumari</div>
+        <div class="founder-box-div"></div>
+        <p>
+          <strong>14+ years</strong> as a Principal Integration Engineer and Lead Interface Architect within the NHS and private healthcare sectors.
+        </p>
+        <p>
+          Holds an <strong>MSc in Data Science (Kingston University)</strong> with deep expertise in HL7 V2.x, FHIR R4, and major integration engines — Mirth, Rhapsody, and Cerner — driving the vision to solve the "Legacy Debt" crisis through ethical, explainable, and inclusive AI.
+        </p>
+        <p>
+          Her front-line NHS experience directly informs the platform's <strong>Explainable Semantic Transformation Engine</strong>, achieving 99.2%+ accuracy in LIMS-to-FHIR stress tests.
+        </p>
+        <a href="#contact" class="linkedin-btn">Contact →</a>
+      </div>
+
+      <!-- Hooreya -->
+      <div class="founder-box">
+        <div class="founder-role-badge">Co-Founder &amp; Data Lead</div>
+        <div class="founder-box-title">Hooreya Najeeb</div>
+        <div class="founder-box-div"></div>
+        <p>
+          <strong>7+ years</strong> as a Governance Data Analyst, designing automated reporting solutions and strengthening data quality within regulated financial and enterprise environments.
+        </p>
+        <p>
+          Holds an <strong>MSc in Data Science (Kingston University)</strong> with expertise in Power BI, Snowflake, SQL, and Power Automate — building governance dashboards and automation pipelines across William Hill, Apple, and Ameriprise Financial (via TCS).
+        </p>
+        <p>
+          Her specialisation in <strong>data governance, risk controls, and reporting automation</strong> underpins Interop Intelligence's compliance monitoring, KPI frameworks, and audit-ready data infrastructure.
+        </p>
+        <a href="#contact" class="linkedin-btn">Contact →</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1131,7 +1165,7 @@ This architecture guarantees full UK GDPR compliance, supports NHS data sovereig
 
   <div class="footer-bottom">
     <p>© 2026 <span> Interop Intelligence  Ltd</span>. All rights reserved. UK HealthTech Innovation.</p>
-    <p>Innovator Founder Business Plan <span>Babita Kumari</span>, Founder &amp; CEO</p>
+    <p>Innovator Founders · <span>Babita Kumari</span>, Founder &amp; CEO · <span>Hooreya Najeeb</span>, Co-Founder &amp; Data Lead</p>
   </div>
 </footer>
 
